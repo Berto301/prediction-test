@@ -10,8 +10,9 @@ export default class Server{
     }
     async start(){
         const app = express()
+        app.use(express.json());
         app.use('/api', routes)
-        await mongoose.connect(`mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`, {
+        await mongoose.connect(process.env.DB_URI || `mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             }).then(()=>{

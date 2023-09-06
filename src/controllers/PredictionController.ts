@@ -4,9 +4,8 @@ import PredictionModel, { IPrediction } from '../modules/Prediction';
 export class PredictionController {
   addPrediction(req: Request, res: Response): void {
     const predictionData: IPrediction = req.body; 
-
+    console.log({predictionData, body:req.body})
     const prediction = new PredictionModel(predictionData);
-
     prediction
       .save()
       .then((savedPrediction) => {
